@@ -1,0 +1,1441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Customer Experience | The Strategy Group</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy:        #003F7D;
+      --navy-dark:   #002A54;
+      --navy-mid:    #00529C;
+      --orange:      #F47920;
+      --orange-light:#FF8C3A;
+      --light-bg:    #F0F6FF;
+      --lighter-bg:  #F7FAFF;
+      --text-dark:   #0D1B2A;
+      --text-mid:    #3D5166;
+      --text-light:  #7A8FA6;
+      --border:      #D6E4F5;
+      --white:       #FFFFFF;
+      --radius-sm:   8px;
+      --radius-md:   14px;
+      --radius-lg:   22px;
+      --shadow-sm:   0 2px 8px rgba(0,63,125,0.08);
+      --shadow-md:   0 6px 24px rgba(0,63,125,0.12);
+      --shadow-lg:   0 16px 48px rgba(0,63,125,0.15);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background: var(--white);
+      color: var(--text-dark);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* ─── NAV ─────────────────────────────────────────────── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 5%;
+      height: 68px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-logo {
+      font-weight: 800;
+      font-size: 1.1rem;
+      color: var(--navy);
+      letter-spacing: -0.02em;
+      text-decoration: none;
+    }
+    .nav-logo span { color: var(--orange); }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+    .nav-links a {
+      color: var(--text-mid);
+      text-decoration: none;
+      font-size: 0.875rem;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--navy); }
+
+    .nav-cta {
+      background: var(--navy);
+      color: var(--white) !important;
+      padding: 0.5rem 1.25rem;
+      border-radius: 50px;
+      font-weight: 600 !important;
+      font-size: 0.85rem !important;
+      transition: background 0.2s, transform 0.15s !important;
+    }
+    .nav-cta:hover { background: var(--navy-mid) !important; transform: translateY(-1px); }
+
+    /* ─── HERO ────────────────────────────────────────────── */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+      padding: 120px 5% 80px;
+      background: linear-gradient(160deg, var(--lighter-bg) 0%, var(--white) 60%, #E8F1FC 100%);
+    }
+
+    /* Dot grid background */
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(circle, rgba(0,63,125,0.12) 1px, transparent 1px);
+      background-size: 32px 32px;
+      mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 30%, transparent 100%);
+      pointer-events: none;
+    }
+
+    /* Gradient blobs */
+    .hero::after {
+      content: '';
+      position: absolute;
+      top: -180px; right: -120px;
+      width: 700px; height: 700px;
+      background: radial-gradient(circle, rgba(244,121,32,0.12) 0%, transparent 65%);
+      pointer-events: none;
+    }
+
+    .blob-2 {
+      position: absolute;
+      bottom: -150px; left: -100px;
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(0,63,125,0.1) 0%, transparent 65%);
+      pointer-events: none;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 680px;
+    }
+
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(0,63,125,0.08);
+      border: 1px solid rgba(0,63,125,0.15);
+      color: var(--navy);
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 0.4rem 0.9rem;
+      border-radius: 50px;
+      margin-bottom: 1.75rem;
+    }
+    .hero-eyebrow::before {
+      content: '';
+      width: 6px; height: 6px;
+      background: var(--orange);
+      border-radius: 50%;
+    }
+
+    h1 {
+      font-size: clamp(2.8rem, 5.5vw, 4.4rem);
+      font-weight: 900;
+      line-height: 1.08;
+      letter-spacing: -0.035em;
+      color: var(--text-dark);
+      margin-bottom: 1.5rem;
+    }
+
+    .gradient-text {
+      background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 40%, var(--orange) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-sub {
+      font-size: 1.15rem;
+      color: var(--text-mid);
+      line-height: 1.7;
+      max-width: 540px;
+      margin-bottom: 2.5rem;
+      font-weight: 400;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 100%);
+      color: var(--white);
+      padding: 0.875rem 1.75rem;
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      text-decoration: none;
+      box-shadow: 0 4px 18px rgba(0,63,125,0.3);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(0,63,125,0.35); }
+
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--white);
+      color: var(--navy);
+      padding: 0.875rem 1.75rem;
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      text-decoration: none;
+      border: 2px solid var(--border);
+      transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
+    }
+    .btn-secondary:hover { border-color: var(--navy); transform: translateY(-2px); box-shadow: var(--shadow-sm); }
+
+    /* Floating card */
+    .hero-card {
+      position: absolute;
+      right: 5%;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 2;
+      display: grid;
+      gap: 1rem;
+    }
+
+    .metric-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 1.25rem 1.5rem;
+      box-shadow: var(--shadow-md);
+      min-width: 220px;
+      animation: float 6s ease-in-out infinite;
+    }
+    .metric-card:nth-child(2) { animation-delay: -3s; }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50%       { transform: translateY(-10px); }
+    }
+
+    .metric-label {
+      font-size: 0.72rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      color: var(--text-light);
+      margin-bottom: 0.35rem;
+    }
+    .metric-value {
+      font-size: 2rem;
+      font-weight: 900;
+      color: var(--navy);
+      line-height: 1;
+    }
+    .metric-value span { color: var(--orange); }
+    .metric-delta {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.25rem;
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: #16a34a;
+      margin-top: 0.3rem;
+    }
+
+    /* ─── STATS BAR ───────────────────────────────────────── */
+    .stats-bar {
+      background: var(--navy-dark);
+      padding: 3rem 5%;
+    }
+
+    .stats-grid {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+    }
+
+    .stat-item {
+      text-align: center;
+      padding: 0 1.5rem;
+      border-right: 1px solid rgba(255,255,255,0.12);
+    }
+    .stat-item:last-child { border-right: none; }
+
+    .stat-number {
+      font-size: 2.8rem;
+      font-weight: 900;
+      color: var(--white);
+      letter-spacing: -0.03em;
+      line-height: 1;
+    }
+    .stat-number em {
+      font-style: normal;
+      color: var(--orange);
+    }
+    .stat-desc {
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.55);
+      margin-top: 0.4rem;
+      font-weight: 500;
+      letter-spacing: 0.01em;
+    }
+
+    /* ─── SECTION SHARED ──────────────────────────────────── */
+    section { padding: 6rem 5%; }
+
+    .section-inner { max-width: 1100px; margin: 0 auto; }
+
+    .section-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--orange);
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+    .section-eyebrow::before {
+      content: '';
+      display: block;
+      width: 24px; height: 2px;
+      background: var(--orange);
+      border-radius: 2px;
+    }
+
+    h2 {
+      font-size: clamp(2rem, 3.5vw, 2.8rem);
+      font-weight: 900;
+      letter-spacing: -0.03em;
+      line-height: 1.15;
+      color: var(--text-dark);
+    }
+
+    .section-intro {
+      font-size: 1.05rem;
+      color: var(--text-mid);
+      line-height: 1.75;
+      max-width: 600px;
+      margin-top: 1rem;
+    }
+
+    /* ─── INTRO SPLIT ─────────────────────────────────────── */
+    .intro-section { background: var(--white); }
+
+    .intro-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+    }
+
+    .intro-visual {
+      position: relative;
+    }
+
+    .cx-diagram {
+      background: var(--light-bg);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border);
+      padding: 2.5rem;
+      box-shadow: var(--shadow-md);
+    }
+
+    .cx-diagram-title {
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-light);
+      margin-bottom: 1.5rem;
+    }
+
+    .journey-stages {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .stage {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 0.75rem 1rem;
+      transition: box-shadow 0.2s;
+    }
+    .stage:hover { box-shadow: var(--shadow-sm); }
+
+    .stage-icon {
+      width: 36px; height: 36px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      flex-shrink: 0;
+    }
+
+    .stage-info { flex: 1; }
+    .stage-name { font-size: 0.82rem; font-weight: 700; color: var(--text-dark); }
+    .stage-score { font-size: 0.72rem; color: var(--text-light); margin-top: 1px; }
+
+    .stage-bar {
+      width: 80px; height: 6px;
+      background: var(--border);
+      border-radius: 3px;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+    .stage-bar-fill { height: 100%; border-radius: 3px; }
+
+    .intro-points {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    .intro-point {
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+    }
+
+    .point-icon {
+      width: 44px; height: 44px;
+      background: linear-gradient(135deg, var(--light-bg), #d6e9ff);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .point-title { font-weight: 700; color: var(--text-dark); margin-bottom: 0.2rem; }
+    .point-body { font-size: 0.9rem; color: var(--text-mid); line-height: 1.6; }
+
+    /* ─── SERVICES GRID ───────────────────────────────────── */
+    .services-section { background: var(--lighter-bg); }
+
+    .services-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 3rem;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.25rem;
+    }
+
+    .service-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 2rem;
+      transition: transform 0.25s, box-shadow 0.25s, border-color 0.25s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .service-card::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--navy), var(--orange));
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.3s;
+    }
+
+    .service-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-lg);
+      border-color: rgba(0,63,125,0.2);
+    }
+    .service-card:hover::after { transform: scaleX(1); }
+
+    .service-icon {
+      width: 52px; height: 52px;
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .service-card h3 {
+      font-size: 1.05rem;
+      font-weight: 800;
+      color: var(--text-dark);
+      margin-bottom: 0.6rem;
+      letter-spacing: -0.01em;
+    }
+
+    .service-card p {
+      font-size: 0.88rem;
+      color: var(--text-mid);
+      line-height: 1.65;
+    }
+
+    .service-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      color: var(--navy);
+      font-size: 0.82rem;
+      font-weight: 600;
+      text-decoration: none;
+      margin-top: 1rem;
+      opacity: 0;
+      transform: translateX(-6px);
+      transition: opacity 0.25s, transform 0.25s;
+    }
+    .service-card:hover .service-link { opacity: 1; transform: translateX(0); }
+
+    /* ─── APPROACH ────────────────────────────────────────── */
+    .approach-section { background: var(--white); }
+
+    .approach-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.4fr;
+      gap: 5rem;
+      align-items: center;
+      margin-top: 3rem;
+    }
+
+    .approach-steps {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .approach-step {
+      display: flex;
+      gap: 1.5rem;
+      padding: 1.5rem 0;
+      position: relative;
+      cursor: pointer;
+    }
+
+    .approach-step:not(:last-child)::after {
+      content: '';
+      position: absolute;
+      left: 20px;
+      top: 60px;
+      bottom: 0;
+      width: 2px;
+      background: linear-gradient(to bottom, var(--border), transparent);
+    }
+
+    .step-number {
+      width: 40px; height: 40px;
+      border-radius: 50%;
+      background: var(--light-bg);
+      border: 2px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.8rem;
+      font-weight: 800;
+      color: var(--text-light);
+      flex-shrink: 0;
+      transition: all 0.25s;
+      position: relative;
+      z-index: 1;
+    }
+
+    .approach-step.active .step-number,
+    .approach-step:hover .step-number {
+      background: var(--navy);
+      border-color: var(--navy);
+      color: var(--white);
+      box-shadow: 0 0 0 6px rgba(0,63,125,0.12);
+    }
+
+    .step-content h3 {
+      font-size: 0.95rem;
+      font-weight: 800;
+      color: var(--text-dark);
+      margin-bottom: 0.35rem;
+    }
+    .step-content p {
+      font-size: 0.85rem;
+      color: var(--text-mid);
+      line-height: 1.6;
+    }
+
+    .approach-visual {
+      background: var(--light-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 2.5rem;
+      box-shadow: var(--shadow-md);
+    }
+
+    .approach-viz-title {
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-light);
+      margin-bottom: 1.75rem;
+    }
+
+    .nps-display {
+      text-align: center;
+      padding: 2rem 0 1rem;
+    }
+    .nps-score {
+      font-size: 5rem;
+      font-weight: 900;
+      color: var(--navy);
+      letter-spacing: -0.04em;
+      line-height: 1;
+    }
+    .nps-score sup { font-size: 2rem; color: var(--orange); }
+    .nps-label { font-size: 0.8rem; color: var(--text-light); font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; margin-top: 0.5rem; }
+
+    .nps-bar-row {
+      display: flex;
+      gap: 0.5rem;
+      margin: 1.75rem 0 0.75rem;
+    }
+    .nps-segment {
+      flex: 1; height: 10px; border-radius: 5px;
+    }
+
+    .outcome-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      margin-top: 1.5rem;
+    }
+
+    .outcome-item {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-size: 0.85rem;
+      color: var(--text-mid);
+      font-weight: 500;
+    }
+    .outcome-check {
+      width: 22px; height: 22px;
+      background: linear-gradient(135deg, var(--navy), var(--navy-mid));
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 0.65rem;
+      flex-shrink: 0;
+    }
+
+    /* ─── RESULTS ─────────────────────────────────────────── */
+    .results-section { background: var(--lighter-bg); }
+
+    .results-header { margin-bottom: 3rem; }
+
+    .results-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.25rem;
+    }
+
+    .result-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 2rem;
+      box-shadow: var(--shadow-sm);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .result-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); }
+
+    .result-industry {
+      display: inline-block;
+      background: var(--light-bg);
+      color: var(--navy);
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      padding: 0.3rem 0.75rem;
+      border-radius: 50px;
+      margin-bottom: 1.25rem;
+    }
+
+    .result-metric {
+      font-size: 3rem;
+      font-weight: 900;
+      color: var(--navy);
+      letter-spacing: -0.04em;
+      line-height: 1;
+      margin-bottom: 0.25rem;
+    }
+    .result-metric em {
+      font-style: normal;
+      color: var(--orange);
+    }
+
+    .result-desc {
+      font-size: 0.82rem;
+      color: var(--text-mid);
+      margin-bottom: 1.25rem;
+      line-height: 1.6;
+    }
+
+    .result-quote {
+      font-size: 0.85rem;
+      color: var(--text-mid);
+      font-style: italic;
+      border-left: 3px solid var(--orange);
+      padding-left: 0.875rem;
+      line-height: 1.65;
+    }
+
+    /* ─── WHY CX ──────────────────────────────────────────── */
+    .why-section {
+      background: linear-gradient(150deg, var(--navy-dark) 0%, var(--navy) 60%, #005BAD 100%);
+      color: white;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .why-section::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(circle, rgba(255,255,255,0.06) 1px, transparent 1px);
+      background-size: 28px 28px;
+      pointer-events: none;
+    }
+
+    .why-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .why-section h2 { color: var(--white); }
+
+    .why-section .section-intro { color: rgba(255,255,255,0.7); }
+
+    .why-points {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+      margin-top: 2rem;
+    }
+
+    .why-point {
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+    }
+
+    .why-icon {
+      font-size: 1.4rem;
+      line-height: 1;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .why-point-title {
+      font-weight: 700;
+      color: white;
+      margin-bottom: 0.2rem;
+    }
+    .why-point-body { font-size: 0.88rem; color: rgba(255,255,255,0.65); line-height: 1.6; }
+
+    .why-stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+
+    .why-stat {
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.14);
+      border-radius: var(--radius-md);
+      padding: 1.75rem 1.5rem;
+      backdrop-filter: blur(8px);
+    }
+
+    .why-stat-num {
+      font-size: 2.6rem;
+      font-weight: 900;
+      letter-spacing: -0.04em;
+      line-height: 1;
+      color: var(--white);
+    }
+    .why-stat-num em { font-style: normal; color: var(--orange); }
+
+    .why-stat-label {
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.55);
+      margin-top: 0.4rem;
+      line-height: 1.4;
+    }
+
+    /* ─── CTA BANNER ──────────────────────────────────────── */
+    .cta-section { background: var(--white); padding: 6rem 5%; }
+
+    .cta-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      background: linear-gradient(135deg, var(--light-bg) 0%, #daeaff 100%);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 4rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 2rem;
+      flex-wrap: wrap;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta-inner::before {
+      content: '';
+      position: absolute;
+      top: -80px; right: -80px;
+      width: 300px; height: 300px;
+      background: radial-gradient(circle, rgba(244,121,32,0.18) 0%, transparent 65%);
+      pointer-events: none;
+    }
+
+    .cta-text h2 {
+      font-size: clamp(1.8rem, 3vw, 2.4rem);
+      margin-bottom: 0.75rem;
+    }
+    .cta-text p {
+      color: var(--text-mid);
+      font-size: 1rem;
+      max-width: 480px;
+      line-height: 1.65;
+    }
+
+    .cta-actions {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      flex-shrink: 0;
+      position: relative;
+      z-index: 1;
+    }
+
+    .btn-orange {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: linear-gradient(135deg, var(--orange) 0%, var(--orange-light) 100%);
+      color: var(--white);
+      padding: 0.875rem 1.75rem;
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      text-decoration: none;
+      box-shadow: 0 4px 18px rgba(244,121,32,0.35);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .btn-orange:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(244,121,32,0.4); }
+
+    /* ─── FOOTER ──────────────────────────────────────────── */
+    footer {
+      background: var(--navy-dark);
+      color: rgba(255,255,255,0.6);
+      padding: 3rem 5%;
+    }
+
+    .footer-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+    }
+
+    .footer-logo {
+      font-weight: 800;
+      font-size: 1rem;
+      color: var(--white);
+      letter-spacing: -0.02em;
+    }
+    .footer-logo span { color: var(--orange); }
+
+    .footer-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+    .footer-links a {
+      color: rgba(255,255,255,0.5);
+      text-decoration: none;
+      font-size: 0.82rem;
+      transition: color 0.2s;
+    }
+    .footer-links a:hover { color: white; }
+
+    .footer-copy { font-size: 0.78rem; }
+
+    /* ─── SCROLL REVEAL ───────────────────────────────────── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ─── RESPONSIVE ──────────────────────────────────────── */
+    @media (max-width: 1024px) {
+      .hero-card { display: none; }
+      .intro-grid, .approach-grid, .why-grid { grid-template-columns: 1fr; gap: 3rem; }
+      .services-grid { grid-template-columns: repeat(2, 1fr); }
+      .results-grid { grid-template-columns: repeat(2, 1fr); }
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+      .stat-item { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.12); padding: 1.5rem; }
+      .stat-item:nth-child(odd) { border-right: 1px solid rgba(255,255,255,0.12); }
+      .stat-item:last-child { border-bottom: none; }
+      .stat-item:nth-last-child(2) { border-bottom: none; }
+    }
+
+    @media (max-width: 640px) {
+      .services-grid, .results-grid, .why-stats { grid-template-columns: 1fr; }
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+      .nav-links { display: none; }
+      .cta-inner { padding: 2.5rem 1.75rem; }
+      h1 { font-size: 2.4rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="#" class="nav-logo">The Strategy<span>.</span>Group</a>
+    <ul class="nav-links">
+      <li><a href="#">Services</a></li>
+      <li><a href="#">Case Studies</a></li>
+      <li><a href="#">About</a></li>
+      <li><a href="#">Insights</a></li>
+      <li><a href="#contact" class="nav-cta">Get in touch</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="blob-2"></div>
+    <div class="hero-content">
+      <div class="hero-eyebrow">Customer Experience</div>
+      <h1>
+        Turn every<br>
+        touchpoint into<br>
+        <span class="gradient-text">competitive advantage.</span>
+      </h1>
+      <p class="hero-sub">
+        We help Australian organisations design, measure, and transform customer experiences that drive loyalty, growth, and lasting competitive edge.
+      </p>
+      <div class="hero-actions">
+        <a href="#contact" class="btn-primary">
+          Start your CX journey
+          <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+        <a href="#approach" class="btn-secondary">
+          See our approach
+          <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <!-- Floating metric cards -->
+    <div class="hero-card">
+      <div class="metric-card">
+        <div class="metric-label">Average NPS Improvement</div>
+        <div class="metric-value">+<span>34</span></div>
+        <div class="metric-delta">
+          <svg width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+          vs. pre-engagement baseline
+        </div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label">Customer Retention Lift</div>
+        <div class="metric-value"><span>22</span>%</div>
+        <div class="metric-delta">
+          <svg width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+          average across engagements
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS BAR -->
+  <div class="stats-bar">
+    <div class="stats-grid">
+      <div class="stat-item reveal">
+        <div class="stat-number">150<em>+</em></div>
+        <div class="stat-desc">CX engagements delivered</div>
+      </div>
+      <div class="stat-item reveal">
+        <div class="stat-number">+<em>34</em></div>
+        <div class="stat-desc">Average NPS uplift</div>
+      </div>
+      <div class="stat-item reveal">
+        <div class="stat-number">22<em>%</em></div>
+        <div class="stat-desc">Average retention improvement</div>
+      </div>
+      <div class="stat-item reveal">
+        <div class="stat-number">18<em>+</em></div>
+        <div class="stat-desc">Years in CX consulting</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- INTRO -->
+  <section class="intro-section">
+    <div class="section-inner">
+      <div class="intro-grid">
+        <div>
+          <div class="section-eyebrow">What we do</div>
+          <h2>CX is your most<br>durable growth lever.</h2>
+          <p class="section-intro">
+            Customers who have excellent experiences spend more, stay longer, and tell others. Yet most organisations still struggle to move from knowing this to actually delivering it consistently.
+          </p>
+          <p class="section-intro" style="margin-top:1rem;">
+            We bridge that gap — combining customer insight, strategic clarity, and hands-on implementation capability to help you build experiences your customers love and your competitors can't easily replicate.
+          </p>
+          <div class="intro-points">
+            <div class="intro-point reveal">
+              <div class="point-icon">🎯</div>
+              <div>
+                <div class="point-title">Strategy-led, not tool-led</div>
+                <p class="point-body">We start with your business goals and customer reality — not a preferred methodology or platform.</p>
+              </div>
+            </div>
+            <div class="intro-point reveal">
+              <div class="point-icon">📐</div>
+              <div>
+                <div class="point-title">End-to-end capability</div>
+                <p class="point-body">From discovery and design through to implementation, measurement, and continuous improvement.</p>
+              </div>
+            </div>
+            <div class="intro-point reveal">
+              <div class="point-icon">🤝</div>
+              <div>
+                <div class="point-title">Built to last internally</div>
+                <p class="point-body">We transfer capability to your team so the improvements endure well beyond our engagement.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="intro-visual reveal">
+          <div class="cx-diagram">
+            <div class="cx-diagram-title">Customer Journey Health</div>
+            <div class="journey-stages">
+              <div class="stage">
+                <div class="stage-icon" style="background:#EBF3FF;">🔍</div>
+                <div class="stage-info">
+                  <div class="stage-name">Awareness & Discovery</div>
+                  <div class="stage-score">Satisfaction: Strong</div>
+                </div>
+                <div class="stage-bar"><div class="stage-bar-fill" style="width:82%;background:linear-gradient(90deg,#003F7D,#00529C);"></div></div>
+              </div>
+              <div class="stage">
+                <div class="stage-icon" style="background:#FFF3EB;">🛒</div>
+                <div class="stage-info">
+                  <div class="stage-name">Consideration & Purchase</div>
+                  <div class="stage-score">Satisfaction: Needs attention</div>
+                </div>
+                <div class="stage-bar"><div class="stage-bar-fill" style="width:55%;background:linear-gradient(90deg,#F47920,#FF8C3A);"></div></div>
+              </div>
+              <div class="stage">
+                <div class="stage-icon" style="background:#EBF3FF;">🚀</div>
+                <div class="stage-info">
+                  <div class="stage-name">Onboarding & Activation</div>
+                  <div class="stage-score">Satisfaction: Critical gap</div>
+                </div>
+                <div class="stage-bar"><div class="stage-bar-fill" style="width:38%;background:linear-gradient(90deg,#e63946,#ff6b6b);"></div></div>
+              </div>
+              <div class="stage">
+                <div class="stage-icon" style="background:#EBF3FF;">💙</div>
+                <div class="stage-info">
+                  <div class="stage-name">Service & Support</div>
+                  <div class="stage-score">Satisfaction: Good</div>
+                </div>
+                <div class="stage-bar"><div class="stage-bar-fill" style="width:71%;background:linear-gradient(90deg,#003F7D,#00529C);"></div></div>
+              </div>
+              <div class="stage">
+                <div class="stage-icon" style="background:#F0FFF4;">⭐</div>
+                <div class="stage-info">
+                  <div class="stage-name">Loyalty & Advocacy</div>
+                  <div class="stage-score">Satisfaction: Strong</div>
+                </div>
+                <div class="stage-bar"><div class="stage-bar-fill" style="width:78%;background:linear-gradient(90deg,#16a34a,#22c55e);"></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section class="services-section">
+    <div class="section-inner">
+      <div class="services-header">
+        <div>
+          <div class="section-eyebrow">Our Services</div>
+          <h2>Everything you need to<br>transform customer experience.</h2>
+        </div>
+        <a href="#contact" class="btn-secondary">View all services →</a>
+      </div>
+      <div class="services-grid">
+
+        <div class="service-card reveal">
+          <div class="service-icon" style="background:#EBF3FF;">🗺️</div>
+          <h3>CX Strategy & Transformation</h3>
+          <p>Define what great looks like for your customers, align your organisation around it, and build a credible roadmap to get there.</p>
+          <a href="#" class="service-link">Explore →</a>
+        </div>
+
+        <div class="service-card reveal">
+          <div class="service-icon" style="background:#FFF3EB;">🧭</div>
+          <h3>Customer Journey Mapping</h3>
+          <p>See your business through your customers' eyes. Identify the moments that matter most — and fix the friction that's costing you.</p>
+          <a href="#" class="service-link">Explore →</a>
+        </div>
+
+        <div class="service-card reveal">
+          <div class="service-icon" style="background:#F0FFF4;">🎙️</div>
+          <h3>Voice of Customer (VoC)</h3>
+          <p>Build a systematic listening capability that turns customer signals into action, not just dashboards nobody reads.</p>
+          <a href="#" class="service-link">Explore →</a>
+        </div>
+
+        <div class="service-card reveal">
+          <div class="service-icon" style="background:#EBF3FF;">✏️</div>
+          <h3>Service Design</h3>
+          <p>Co-design services that work better for customers and are easier to deliver — finding the overlap between desirability and operational viability.</p>
+          <a href="#" class="service-link">Explore →</a>
+        </div>
+
+        <div class="service-card reveal">
+          <div class="service-icon" style="background:#FFF3EB;">📊</div>
+          <h3>CX Measurement & Metrics</h3>
+          <p>Move beyond NPS as a vanity metric. Build a measurement framework that links CX performance directly to commercial outcomes.</p>
+          <a href="#" class="service-link">Explore →</a>
+        </div>
+
+        <div class="service-card reveal">
+          <div class="service-icon" style="background:#F5F0FF;">💻</div>
+          <h3>Digital Customer Experience</h3>
+          <p>Optimise your digital touchpoints to reduce friction, increase conversion, and create experiences that feel effortless.</p>
+          <a href="#" class="service-link">Explore →</a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- APPROACH -->
+  <section class="approach-section" id="approach">
+    <div class="section-inner">
+      <div class="section-eyebrow">Our Approach</div>
+      <h2>A proven methodology for<br>lasting CX improvement.</h2>
+      <div class="approach-grid">
+        <div class="approach-steps">
+          <div class="approach-step active reveal">
+            <div class="step-number">01</div>
+            <div class="step-content">
+              <h3>Discover & Diagnose</h3>
+              <p>We start by understanding your customers deeply — their needs, behaviours, and the gaps between what they experience and what they expect.</p>
+            </div>
+          </div>
+          <div class="approach-step reveal">
+            <div class="step-number">02</div>
+            <div class="step-content">
+              <h3>Define the Vision</h3>
+              <p>We help you articulate a clear, achievable CX vision aligned to your brand and commercial strategy — so everyone knows what you're building towards.</p>
+            </div>
+          </div>
+          <div class="approach-step reveal">
+            <div class="step-number">03</div>
+            <div class="step-content">
+              <h3>Design & Prioritise</h3>
+              <p>We co-design improved experiences and identify the highest-value initiatives, balancing impact with feasibility to build a prioritised roadmap.</p>
+            </div>
+          </div>
+          <div class="approach-step reveal">
+            <div class="step-number">04</div>
+            <div class="step-content">
+              <h3>Deliver & Embed</h3>
+              <p>We support implementation and build internal capability — measurement systems, governance frameworks, and team skills — so change sticks.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="approach-visual reveal">
+          <div class="approach-viz-title">Typical Engagement Outcomes</div>
+          <div class="nps-display">
+            <div class="nps-score">+34<sup>pts</sup></div>
+            <div class="nps-label">Average NPS uplift</div>
+          </div>
+          <div class="nps-bar-row">
+            <div class="nps-segment" style="background:#e63946;flex:3;"></div>
+            <div class="nps-segment" style="background:#f59e0b;flex:2;"></div>
+            <div class="nps-segment" style="background:#16a34a;flex:5;"></div>
+          </div>
+          <div style="display:flex;justify-content:space-between;font-size:0.7rem;color:var(--text-light);font-weight:600;">
+            <span>Detractors</span><span>Passives</span><span>Promoters</span>
+          </div>
+          <div class="outcome-list">
+            <div class="outcome-item">
+              <div class="outcome-check">✓</div>
+              Reduced customer effort scores
+            </div>
+            <div class="outcome-item">
+              <div class="outcome-check">✓</div>
+              Higher retention and loyalty rates
+            </div>
+            <div class="outcome-item">
+              <div class="outcome-check">✓</div>
+              Improved first-contact resolution
+            </div>
+            <div class="outcome-item">
+              <div class="outcome-check">✓</div>
+              Stronger customer lifetime value
+            </div>
+            <div class="outcome-item">
+              <div class="outcome-check">✓</div>
+              Measurable revenue attribution
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RESULTS -->
+  <section class="results-section">
+    <div class="section-inner">
+      <div class="results-header">
+        <div class="section-eyebrow">Results</div>
+        <h2>Real outcomes for real organisations.</h2>
+        <p class="section-intro">We measure success by the commercial and customer outcomes our clients achieve — not the quality of our slide decks.</p>
+      </div>
+      <div class="results-grid">
+        <div class="result-card reveal">
+          <div class="result-industry">Financial Services</div>
+          <div class="result-metric">+<em>41</em><span style="font-size:1.5rem;color:var(--text-mid);"> pts</span></div>
+          <p class="result-desc">NPS improvement for a major bank following a full customer journey redesign programme across retail banking touchpoints.</p>
+          <blockquote class="result-quote">"TSG helped us see our business through the customer's eyes — and act on what we found."</blockquote>
+        </div>
+        <div class="result-card reveal">
+          <div class="result-industry">Retail & E-Commerce</div>
+          <div class="result-metric"><em>31</em><span style="font-size:1.5rem;color:var(--text-mid);">% ↑</span></div>
+          <p class="result-desc">Increase in repeat purchase rate after implementing a VoC-driven personalisation strategy across digital and in-store channels.</p>
+          <blockquote class="result-quote">"Our customers now feel genuinely understood. That's translated directly into revenue."</blockquote>
+        </div>
+        <div class="result-card reveal">
+          <div class="result-industry">Healthcare</div>
+          <div class="result-metric"><em>48</em><span style="font-size:1.5rem;color:var(--text-mid);">% ↓</span></div>
+          <p class="result-desc">Reduction in patient complaints following service design work that reimagined the care journey from referral through to discharge.</p>
+          <blockquote class="result-quote">"A genuine shift in how we understand and respond to patients. The data speaks for itself."</blockquote>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY CX -->
+  <section class="why-section">
+    <div class="section-inner">
+      <div class="why-grid">
+        <div>
+          <div class="section-eyebrow" style="color:rgba(255,255,255,0.6);">
+            <span style="background:rgba(255,255,255,0.3);"></span>
+            Why it matters
+          </div>
+          <h2 style="color:white;margin-bottom:1rem;">The CX imperative<br>is only growing.</h2>
+          <p class="section-intro" style="margin-bottom:0;">Customers have never had more choice, more information, or higher expectations. The organisations that win are those who make it easy and enjoyable to do business with them — every time.</p>
+          <div class="why-points">
+            <div class="why-point reveal">
+              <div class="why-icon">💰</div>
+              <div>
+                <div class="why-point-title">CX leaders outperform financially</div>
+                <p class="why-point-body">Companies that lead on customer experience consistently outgrow and outperform their sector peers on revenue and profitability.</p>
+              </div>
+            </div>
+            <div class="why-point reveal">
+              <div class="why-icon">🔄</div>
+              <div>
+                <div class="why-point-title">Retention is more valuable than acquisition</div>
+                <p class="why-point-body">Improving customer retention by 5% can increase profits by 25–95%. Yet most marketing budgets still skew heavily to acquisition.</p>
+              </div>
+            </div>
+            <div class="why-point reveal">
+              <div class="why-icon">📣</div>
+              <div>
+                <div class="why-point-title">Advocacy is the ultimate growth engine</div>
+                <p class="why-point-body">Customers who actively advocate for your brand have twice the lifetime value and dramatically lower the cost of acquiring similar customers.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="why-stats reveal">
+          <div class="why-stat">
+            <div class="why-stat-num">89<em>%</em></div>
+            <div class="why-stat-label">of customers switch to a competitor after a poor experience</div>
+          </div>
+          <div class="why-stat">
+            <div class="why-stat-num">5<em>×</em></div>
+            <div class="why-stat-label">more costly to acquire a new customer than retain an existing one</div>
+          </div>
+          <div class="why-stat">
+            <div class="why-stat-num">73<em>%</em></div>
+            <div class="why-stat-label">of consumers say CX is a key factor in purchasing decisions</div>
+          </div>
+          <div class="why-stat">
+            <div class="why-stat-num">2<em>×</em></div>
+            <div class="why-stat-label">lifetime value of customers who are active brand advocates</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <div class="cta-section" id="contact">
+    <div class="cta-inner">
+      <div class="cta-text">
+        <h2>Ready to transform your<br>customer experience?</h2>
+        <p>Talk to our team about your CX challenges. We'll share how we'd approach them — no obligation, no sales pressure.</p>
+      </div>
+      <div class="cta-actions">
+        <a href="mailto:hello@thestrategygroup.com.au" class="btn-orange">
+          Talk to our team
+          <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+        <a href="#" class="btn-secondary">View case studies</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-logo">The Strategy<span>.</span>Group</div>
+      <ul class="footer-links">
+        <li><a href="#">Services</a></li>
+        <li><a href="#">Case Studies</a></li>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Insights</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+      <div class="footer-copy">© 2025 The Strategy Group. All rights reserved.</div>
+    </div>
+  </footer>
+
+  <script>
+    // Scroll reveal
+    const reveals = document.querySelectorAll('.reveal');
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+          // Stagger siblings
+          const siblings = [...entry.target.parentElement.querySelectorAll('.reveal:not(.visible)')];
+          const idx = siblings.indexOf(entry.target);
+          setTimeout(() => entry.target.classList.add('visible'), idx * 80);
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    reveals.forEach(el => io.observe(el));
+
+    // Animated counters
+    function animateCounter(el, target, suffix = '') {
+      let start = 0;
+      const duration = 1800;
+      const step = (timestamp) => {
+        if (!start) start = timestamp;
+        const progress = Math.min((timestamp - start) / duration, 1);
+        const eased = 1 - Math.pow(1 - progress, 3);
+        el.textContent = Math.round(eased * target) + suffix;
+        if (progress < 1) requestAnimationFrame(step);
+      };
+      requestAnimationFrame(step);
+    }
+
+    const statsBar = document.querySelector('.stats-bar');
+    let counted = false;
+    new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting && !counted) {
+        counted = true;
+        // Trigger stat number animations - handled via CSS reveal
+      }
+    }, { threshold: 0.5 }).observe(statsBar);
+
+    // Approach step interactivity
+    document.querySelectorAll('.approach-step').forEach(step => {
+      step.addEventListener('mouseenter', () => {
+        document.querySelectorAll('.approach-step').forEach(s => s.classList.remove('active'));
+        step.classList.add('active');
+      });
+    });
+  </script>
+</body>
+</html>
